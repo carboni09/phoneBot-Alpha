@@ -12,6 +12,10 @@ server.use(bodyParser.urlencoded({
 
 server.use(bodyParser.json())
 
+server.get('/', function (req, res) {
+    res.send('Hola')
+})
+
 server.post('/search-phones/:phone', function(req,res) {
     let info = ''
     let phone_to_search = req.params.phone;
@@ -51,6 +55,6 @@ server.post('/search-phones/:phone', function(req,res) {
 
 })
 
-server.listen((process.env.PORT || 8000 ), function() {
+server.listen((process.env.PORT || 8011 ), function() {
     console.log('.....And we\'re live...')
 })
