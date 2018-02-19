@@ -58,12 +58,12 @@ server.post('/save-phones/:phone', function(req,res) {
       
                 //data.push(metadata)
                 firebase.firestore().collection('phones').doc(metadata.phone).set(metadata)
-                    .then( doc => {
-                        console.log(doc.id)
-                    }).then( function () {
-                        res.send('Done')
-                        return 'Done did it'
+                    .then( function() {
+                        console.log("Document written successfully");
+                        res.send(metadata.phone+' added')
                     })
+                        
+                    
               });
              
              // data = JSON.stringify(data)
@@ -83,13 +83,13 @@ server.post('/save-phones/:phone', function(req,res) {
 
 
 
-server.post('/find-phones/:phone', function (req, res) {
+server.get('/find-phones/:phone', function (req, res) {
     let phone_to_find = req.params.phone;
     phone_to_find = phone_to_find.replace(/\+/g, " ")
     console.log('Find '+phone_to_find)
     firebase.firestore().collection('phones').doc(phone_to_find).get()
         .then( doc => {
-            console.log(  )
+            
             res.send(doc.data())
             return
         })
