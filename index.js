@@ -13,10 +13,10 @@ server.use(bodyParser.urlencoded({
 server.use(bodyParser.json())
 
 server.get('/', function (req, res) {
-    res.send('Hola')
+    res.send('S\'up')
 })
 
-server.post('/search-phones/:phone', function(req,res) {
+server.get('/search-phones/:phone', function(req,res) {
     let info = ''
     let phone_to_search = req.params.phone;
     console.log(req.body.result)
