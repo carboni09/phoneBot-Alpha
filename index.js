@@ -16,7 +16,7 @@ server.get('/', function (req, res) {
     res.send('S\'up')
 })
 
-server.get('/search-phones/:phone', function(req,res) {
+server.post('/search-phones/:phone', function(req,res) {
     let info = ''
     let phone_to_search = req.params.phone;
     console.log(req.body.result)
