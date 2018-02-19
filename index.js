@@ -27,7 +27,7 @@ firebase.initializeApp(config);
 
 server.get('/', function (req, res) {
     
-    res.send('S\'up')
+    res.send('S\'up Dawg')
     
 })
 
