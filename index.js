@@ -102,7 +102,7 @@ server.get('/find-phones/:phone', function (req, res) {
 
 server.get('/search/:phone', function(req, res) {
     let phone = req.params.phone;
-    phone = phone_to_find.replace(/\+/g, " ")
+    phone = phone.replace(/\+/g, " ")
     index
         .search({
             phone
