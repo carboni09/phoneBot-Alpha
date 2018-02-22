@@ -5,11 +5,15 @@ let request = require('request')
 let cheerio = require('cheerio')
 let firebase = require('firebase/app')
                require('firebase/firestore')
-
+let algoliasearch = require('algoliasearch')
+let ALGOLIA_SEARCH_KEY = '5925612d5c56aa9f729ded88bac26c5c'
+let ALGOLIA_APP_ID = 'CHPDZMSSX7'
+const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY);
+const index = client.initIndex('notes');
     let config = {
     apiKey: "AIzaSyBmkcuv__YHDjIqZtaO8Or7tVAWmkxRE58",
     authDomain: "phonebotalpha.firebaseapp.com",
-    databaseURL: "https://phonebotalpha.firebaseio.com",
+    databaseURL: "https://phonebotalpha.firebaseio./",
     projectId: "phonebotalpha",
     storageBucket: "phonebotalpha.appspot.com",
     messagingSenderId: "661337425451"
@@ -91,6 +95,19 @@ server.get('/find-phones/:phone', function (req, res) {
         .then( doc => {
             
             res.send(doc.data())
+            return
+        })
+})
+
+
+server.get('/search/:phone', function(req, res) {
+    let phone = req.params.phone;
+    phone = phone_to_find.replace(/\+/g, " ")
+    index
+        .search({
+            phone
+        }).then( responses => {
+            res.send(responses.hits)
             return
         })
 })
